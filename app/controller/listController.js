@@ -4,12 +4,12 @@ List = require("../models/listModel");
 // Handle index actions
 exports.index = function(req, res) {
   List.get(function(err, lists) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    }
+    // if (err) {
+    //   res.json({
+    //     status: "error",
+    //     message: err
+    //   });
+    // }
     res.json({
       status: "success",
       message: "Lists retrieved successfully",
@@ -34,7 +34,7 @@ exports.new = function(req, res) {
 // Handle view list info
 exports.view = function(req, res) {
   List.findById(req.params.list_id, function(err, list) {
-    if (err) res.send(err);
+    // if (err) res.send(err);
     res.json({
       message: "list details loading..",
       data: list
@@ -44,11 +44,11 @@ exports.view = function(req, res) {
 // Handle update list info
 exports.update = function(req, res) {
   List.findById(req.params.list_id, function(err, list) {
-    if (err) res.send(err);
-    list.name = req.body.title;
+    // if (err) res.send(err);
+    list.title = req.body.title;
     // save the list and check for errors
     list.save(function(err) {
-      if (err) res.json(err);
+      // if (err) res.json(err);
       res.json({
         message: "list Info updated",
         data: list
@@ -63,7 +63,7 @@ exports.delete = function(req, res) {
       _id: req.params.list_id
     },
     function(err, list) {
-      if (err) res.send(err);
+      // if (err) res.send(err);
       res.json({
         status: "success",
         message: "list deleted"
